@@ -100,10 +100,17 @@ module RailsBootstrapHelpers::Renderers
         direction = class_for_direction(direction)
         append_class!(options, direction)
       end
-
-      content_tag :div, options do
-        render_tabs + "\n" +
-        render_tab_content
+      
+      if direction == 'below'
+        content_tag :div, options do
+          render_tab_content + "\n" +
+          render_tabs
+        end        
+      else
+        content_tag :div, options do
+          render_tabs + "\n" +
+          render_tab_content
+        end
       end
     end
 
